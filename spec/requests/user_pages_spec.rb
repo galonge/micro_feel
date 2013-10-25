@@ -51,10 +51,20 @@ describe "User Pages" do
 
    		describe "profile page" do
 		   			let(:user) { FactoryGirl.create(:user) }
+		   			let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Foo")}
+		   			let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "Bar")}
+
+
 		   			before { visit user_path(user)}
 
 		   			it { should have_content(user.name) }
 		   			it { should have_title(user.name) }
+
+		   			describe "microposts" do
+		   				it { should have_content(m1.content)}
+		   				it { should have_content(m2.content)}
+		   				it { should have_content(user.microposts.count)}
+		   			end
 		   		end
 
 			   describe "signup page" do
@@ -119,7 +129,7 @@ describe "User Pages" do
 	  	describe "page " do
 	  		it { should have_content("Update your profile")}
 	  		it { should have_title("Edit user")}
-	  		it { should have_link("change", href: 'http://gravatar.com/emails')}
+	  		it { should have_link("Change Avatar", href: 'http://gravatar.com/emails')}
 	  	end
 
 	  	describe "with valid information" do
@@ -129,7 +139,7 @@ describe "User Pages" do
 		        fill_in "Name",             with: new_name
 		        fill_in "Email",            with: new_email
 		        fill_in "Password",         with: user.password
-		        fill_in "Confirm Password", with: user.password
+		        fill_in "Confirmation", with: user.password
 		        click_button "Save changes"
 		      end
 
