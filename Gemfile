@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.0'
 gem 'bootstrap-sass', '2.3.2.0'
-gem "bcrypt-ruby", '3.1.2'
+gem "bcrypt-ruby", '3.0.0'
 #gem 'bcrypt-ruby', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
 gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
